@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Header from "./Header";
+import { CartContext } from "./CartContext";
 function Article() {
   const { id } = useParams();
   const [article, setArticle] = useState();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext);
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((response) => response.json())
@@ -51,7 +53,9 @@ function Article() {
                 </div>
               </div>
               <div>
-                <button>Add to Cart</button>
+                <button onClick={() => addToCart(article, quantity)}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import ArticlePreview from "./ArticlePreview";
 import { Link } from "react-router-dom";
+import useFetchArticles from "./useFetchArticles";
 
-function Home({ articles, cart }) {
+function Home() {
+  const { articles } = useFetchArticles();
   return (
     <div className="homepage">
       <div className="homepage-product">
